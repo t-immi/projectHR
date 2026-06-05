@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/../ml_service"
+
+if [[ ! -d .venv ]] || ! .venv/bin/python -c "import uvicorn" 2>/dev/null; then
+  python3 -m venv .venv
+  .venv/bin/pip install -q -U pip
+  .venv/bin/pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+  .venv/bin/pip install -q -r requirements.txt
+fi
+
+export ML_STUB="${ML_STUB:-false}"
+export MODEL_PATH="${MODEL_PATH:-$(pwd)/resume_model_v2_epoch_3}"
+
+exec .venv/bin/uvicorn app:app --reload --host 127.0.0.1 --port 8000

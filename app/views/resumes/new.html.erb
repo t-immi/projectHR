@@ -1,0 +1,9 @@
+<% content_for :title, t("resumes.new.title") %>
+
+<h1 class="h2 mb-4"><%= t("resumes.new.title") %></h1>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <%= render "form", resume: @resume %>
+  </div>
+</div>

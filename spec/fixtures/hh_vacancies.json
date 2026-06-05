@@ -1,0 +1,60 @@
+{
+  "found": 5,
+  "items": [
+    {
+      "id": "hh-vacancy-001",
+      "name": "Ruby on Rails developer — {{query}}",
+      "snippet": {
+        "requirement": "Опыт Ruby on Rails от 2 лет. PostgreSQL, REST API, {{query}}.",
+        "responsibility": "Разработка backend-сервисов, code review, интеграции."
+      },
+      "employer": { "name": "IT Company Alpha" },
+      "area": { "name": "Москва" },
+      "salary": { "from": 150000, "to": 220000, "currency": "RUR" }
+    },
+    {
+      "id": "hh-vacancy-002",
+      "name": "Backend-разработчик (Ruby) — {{query}}",
+      "snippet": {
+        "requirement": "Ruby, Rails, SQL. Знание {{query}} будет плюсом.",
+        "responsibility": "Проектирование API, поддержка микросервисов."
+      },
+      "employer": { "name": "FinTech Beta" },
+      "area": { "name": "Санкт-Петербург" },
+      "salary": { "from": 180000, "to": null, "currency": "RUR" }
+    },
+    {
+      "id": "hh-vacancy-003",
+      "name": "Fullstack Ruby developer — {{query}}",
+      "snippet": {
+        "requirement": "Ruby on Rails, JavaScript, Docker. {{query}}.",
+        "responsibility": "Fullstack разработка web-приложений."
+      },
+      "employer": { "name": "Product Studio" },
+      "area": { "name": "Казань" },
+      "salary": null
+    },
+    {
+      "id": "hh-vacancy-004",
+      "name": "Senior Rails Engineer — {{query}}",
+      "snippet": {
+        "requirement": "5+ лет опыта, архитектура, менторство. {{query}}.",
+        "responsibility": "Техническое лидерство команды backend."
+      },
+      "employer": { "name": "Enterprise Corp" },
+      "area": { "name": "Москва" },
+      "salary": { "from": 250000, "to": 350000, "currency": "RUR" }
+    },
+    {
+      "id": "hh-vacancy-005",
+      "name": "Junior Ruby developer — {{query}}",
+      "snippet": {
+        "requirement": "Базовые знания Ruby, желание развиваться в {{query}}.",
+        "responsibility": "Разработка под руководством наставника."
+      },
+      "employer": { "name": "Startup Gamma" },
+      "area": { "name": "Новосибирск" },
+      "salary": { "from": 80000, "to": 120000, "currency": "RUR" }
+    }
+  ]
+}

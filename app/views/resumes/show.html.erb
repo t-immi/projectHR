@@ -1,0 +1,116 @@
+<% content_for :title, @resume.title %>
+
+<div data-controller="hh-vacancy-search"
+     data-hh-vacancy-search-url-value="<%= hh_vacancies_api_resume_path(@resume) %>"
+     data-hh-vacancy-search-default-query-value="<%= @resume.title %>"
+     data-hh-vacancy-search-entity-label-value="Вакансия">
+
+  <div class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-2">
+    <div>
+      <h1 class="h2 mb-1"><%= @resume.title %></h1>
+      <span class="badge text-bg-secondary">
+        <%= @resume.source == "hh" ? t("common.source_hh") : t("common.source_upload") %>
+      </span>
+    </div>
+    <%= link_to t("common.back"), resumes_path, class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="row g-4 mb-4">
+    <div class="col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-header"><%= t("resumes.show.body") %></div>
+        <div class="card-body">
+          <pre class="mb-0 text-wrap"><%= @resume.body %></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <div class="card shadow-sm mb-4">
+        <div class="card-header"><%= t("resumes.show.uploaded_matches") %></div>
+        <div class="card-body p-0">
+          <% if @uploaded_match_scores.any? %>
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th><%= t("match_scores.index.vacancy") %></th>
+                    <th><%= t("match_scores.index.score") %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @uploaded_match_scores.each do |match_score| %>
+                    <tr>
+                      <td><%= link_to match_score.vacancy.title, match_score.vacancy %></td>
+                      <td><%= match_score_badge(match_score) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <p class="text-muted p-3 mb-0"><%= t("resumes.show.uploaded_empty") %></p>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-header"><%= t("resumes.show.hh_search_title") %></div>
+        <div class="card-body">
+          <div class="row g-2 align-items-end">
+            <div class="col-sm-8">
+              <label for="hh-vacancy-query" class="form-label"><%= t("resumes.show.hh_query_label") %></label>
+              <input type="text"
+                     id="hh-vacancy-query"
+                     class="form-control"
+                     value="<%= @resume.title %>"
+                     placeholder="<%= t("resumes.show.hh_query_placeholder") %>"
+                     data-hh-vacancy-search-target="query">
+            </div>
+            <div class="col-sm-4">
+              <button type="button"
+                      class="btn btn-primary w-100"
+                      data-action="click->hh-vacancy-search#search">
+                <%= t("resumes.show.search_hh") %>
+              </button>
+            </div>
+          </div>
+          <p class="text-muted small mt-2 mb-0"><%= t("resumes.show.hh_search_hint") %></p>
+        </div>
+        <div class="card-header d-flex justify-content-between align-items-center border-top">
+          <span><%= t("resumes.show.hh_matches") %></span>
+          <span class="spinner-border spinner-border-sm d-none" data-hh-vacancy-search-target="spinner" role="status"></span>
+        </div>
+        <div class="card-body p-0" data-hh-vacancy-search-target="results">
+          <% if @hh_match_scores.any? %>
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th><%= t("match_scores.index.vacancy") %></th>
+                    <th><%= t("match_scores.index.score") %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @hh_match_scores.each do |match_score| %>
+                    <tr>
+                      <td>
+                        <%= link_to match_score.vacancy.title, match_score.vacancy %>
+                        <% if match_score.vacancy.body.include?("Компания:") %>
+                          <br><small class="text-muted"><%= match_score.vacancy.body[/Компания: (.+)/, 1] %></small>
+                        <% end %>
+                      </td>
+                      <td><%= match_score_badge(match_score) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <p class="text-muted p-3 mb-0" data-hh-vacancy-search-target="empty"><%= t("resumes.show.hh_empty") %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

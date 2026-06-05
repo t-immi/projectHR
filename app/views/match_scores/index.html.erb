@@ -1,0 +1,30 @@
+<% content_for :title, t("match_scores.index.title") %>
+
+<h1 class="h2 mb-4"><%= t("match_scores.index.title") %></h1>
+
+<% if @match_scores.any? %>
+  <div class="table-responsive card shadow-sm">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th><%= t("match_scores.index.resume") %></th>
+          <th><%= t("match_scores.index.vacancy") %></th>
+          <th><%= t("match_scores.index.source") %></th>
+          <th><%= t("match_scores.index.score") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @match_scores.each do |match_score| %>
+          <tr>
+            <td><%= link_to match_score.resume.title, match_score.resume %></td>
+            <td><%= link_to match_score.vacancy.title, match_score.vacancy %></td>
+            <td><%= match_score.resume.source == "hh" ? t("common.source_hh") : t("common.source_upload") %></td>
+            <td><%= match_score_badge(match_score) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="alert alert-info"><%= t("match_scores.index.empty") %></div>
+<% end %>

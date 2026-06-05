@@ -1,0 +1,55 @@
+<% content_for :title, @vacancy.title %>
+
+<div class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-2">
+  <div>
+    <h1 class="h2 mb-1"><%= @vacancy.title %></h1>
+    <small class="text-muted"><%= l(@vacancy.created_at, format: :long) %></small>
+  </div>
+  <div class="d-flex gap-2 flex-wrap">
+    <%= button_to t("vacancies.show.compute_matches"), compute_matches_vacancy_path(@vacancy), method: :post, class: "btn btn-outline-primary" %>
+    <%= link_to t("common.back"), vacancies_path, class: "btn btn-outline-secondary" %>
+  </div>
+</div>
+
+<div class="row g-4 mb-4">
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-header"><%= t("vacancies.show.body") %></div>
+      <div class="card-body">
+        <pre class="mb-0 text-wrap"><%= @vacancy.body %></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-header"><%= t("vacancies.show.uploaded_matches") %></div>
+      <div class="card-body p-0">
+        <% if @uploaded_match_scores.any? %>
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th><%= t("match_scores.index.resume") %></th>
+                  <th><%= t("match_scores.index.score") %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @uploaded_match_scores.each do |match_score| %>
+                  <tr>
+                    <td><%= link_to match_score.resume.title, match_score.resume %></td>
+                    <td><%= match_score_badge(match_score) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% else %>
+          <p class="text-muted p-3 mb-0"><%= t("vacancies.show.uploaded_empty") %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

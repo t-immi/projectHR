@@ -1,0 +1,28 @@
+<%= form_with model: vacancy, class: "row g-3" do |form| %>
+  <% if vacancy.errors.any? %>
+    <div class="col-12">
+      <div class="alert alert-danger">
+        <ul class="mb-0">
+          <% vacancy.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-12">
+    <%= form.label :title, t("vacancies.form.title"), class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true %>
+  </div>
+
+  <div class="col-12">
+    <%= form.label :body, t("vacancies.form.body"), class: "form-label" %>
+    <%= form.text_area :body, class: "form-control", rows: 12, required: true %>
+  </div>
+
+  <div class="col-12 d-flex gap-2">
+    <%= form.submit t("vacancies.form.submit"), class: "btn btn-primary" %>
+    <%= link_to t("common.back"), vacancies_path, class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>
