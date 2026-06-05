@@ -1,0 +1,94 @@
+ru:
+  time:
+    formats:
+      short: "%d.%m.%Y %H:%M"
+      long: "%d %B %Y, %H:%M"
+
+  app:
+    name: "HR Matcher"
+    tagline: "Сопоставление резюме и вакансий с ML-оценкой"
+
+  nav:
+    dashboard: "Главная"
+    resumes: "Резюме"
+    vacancies: "Вакансии"
+    match_scores: "Оценки совпадения"
+
+  dashboard:
+    title: "Панель управления"
+    stats:
+      resumes: "Резюме"
+      vacancies: "Вакансии"
+      match_scores: "Оценки"
+    recent_matches: "Последние оценки"
+    recent_vacancies: "Последние вакансии"
+    recent_resumes: "Последние резюме"
+
+  resumes:
+    index:
+      title: "Резюме"
+      new: "Добавить резюме"
+      empty: "Резюме пока нет."
+    new:
+      title: "Новое резюме"
+    show:
+      title: "Резюме"
+      matches: "Совпадения с вакансиями"
+      uploaded_matches: "Загруженные вакансии"
+      hh_matches: "Вакансии с hh.ru"
+      hh_search_title: "Поиск вакансий на hh.ru"
+      hh_query_label: "Поисковый запрос"
+      hh_query_placeholder: "Например: Ruby on Rails developer"
+      search_hh: "Найти 5 вакансий"
+      hh_search_hint: "По умолчанию используется название резюме. Можно ввести свой запрос."
+      hh_empty: "Вакансии с hh.ru пока не найдены."
+      uploaded_empty: "Загруженных вакансий пока нет."
+      body: "Текст резюме"
+    form:
+      title: "Название"
+      body: "Текст резюме"
+      submit: "Сохранить резюме"
+
+  vacancies:
+    index:
+      title: "Вакансии"
+      new: "Добавить вакансию"
+      empty: "Вакансии пока нет."
+    new:
+      title: "Новая вакансия"
+    show:
+      title: "Вакансия"
+      body: "Описание вакансии"
+      uploaded_matches: "Загруженные резюме"
+      compute_matches: "Пересчитать оценки"
+      uploaded_empty: "Загруженных резюме пока нет."
+    form:
+      title: "Название"
+      body: "Описание вакансии"
+      submit: "Сохранить вакансию"
+
+  match_scores:
+    index:
+      title: "Все оценки совпадения"
+      resume: "Резюме"
+      vacancy: "Вакансия"
+      score: "Оценка"
+      source: "Источник"
+      empty: "Оценок пока нет."
+
+  common:
+    actions: "Действия"
+    back: "Назад"
+    view: "Открыть"
+    source_upload: "Загрузка"
+    source_hh: "hh.ru"
+    created_at: "Создано"
+
+  flash:
+    resumes:
+      created: "Резюме успешно добавлено."
+      hh_search_done: "Найдено 5 вакансий на hh.ru по запросу «%{query}»."
+      hh_search_failed: "Ошибка поиска вакансий на hh.ru: %{message}"
+    vacancies:
+      created: "Вакансия успешно добавлена."
+      matches_computed: "Оценки совпадения пересчитаны."

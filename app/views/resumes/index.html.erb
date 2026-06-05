@@ -1,0 +1,33 @@
+<% content_for :title, t("resumes.index.title") %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2 mb-0"><%= t("resumes.index.title") %></h1>
+  <%= link_to t("resumes.index.new"), new_resume_path, class: "btn btn-primary" %>
+</div>
+
+<% if @resumes.any? %>
+  <div class="table-responsive card shadow-sm">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th><%= t("resumes.form.title") %></th>
+          <th><%= t("match_scores.index.source") %></th>
+          <th><%= t("common.created_at") %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @resumes.each do |resume| %>
+          <tr>
+            <td><%= resume.title %></td>
+            <td><%= resume.source == "hh" ? t("common.source_hh") : t("common.source_upload") %></td>
+            <td><%= l(resume.created_at, format: :short) %></td>
+            <td><%= link_to t("common.view"), resume, class: "btn btn-sm btn-outline-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="alert alert-info"><%= t("resumes.index.empty") %></div>
+<% end %>

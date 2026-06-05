@@ -1,0 +1,31 @@
+<% content_for :title, t("vacancies.index.title") %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h2 mb-0"><%= t("vacancies.index.title") %></h1>
+  <%= link_to t("vacancies.index.new"), new_vacancy_path, class: "btn btn-primary" %>
+</div>
+
+<% if @vacancies.any? %>
+  <div class="table-responsive card shadow-sm">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th><%= t("vacancies.form.title") %></th>
+          <th><%= t("common.created_at") %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @vacancies.each do |vacancy| %>
+          <tr>
+            <td><%= vacancy.title %></td>
+            <td><%= l(vacancy.created_at, format: :short) %></td>
+            <td><%= link_to t("common.view"), vacancy, class: "btn btn-sm btn-outline-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="alert alert-info"><%= t("vacancies.index.empty") %></div>
+<% end %>

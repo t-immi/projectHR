@@ -1,0 +1,28 @@
+<%= form_with model: resume, class: "row g-3" do |form| %>
+  <% if resume.errors.any? %>
+    <div class="col-12">
+      <div class="alert alert-danger">
+        <ul class="mb-0">
+          <% resume.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-12">
+    <%= form.label :title, t("resumes.form.title"), class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true %>
+  </div>
+
+  <div class="col-12">
+    <%= form.label :body, t("resumes.form.body"), class: "form-label" %>
+    <%= form.text_area :body, class: "form-control", rows: 12, required: true %>
+  </div>
+
+  <div class="col-12 d-flex gap-2">
+    <%= form.submit t("resumes.form.submit"), class: "btn btn-primary" %>
+    <%= link_to t("common.back"), resumes_path, class: "btn btn-outline-secondary" %>
+  </div>
+<% end %>

@@ -1,0 +1,56 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+#
+# Local dev without PostgreSQL: set DB_ADAPTER=sqlite3 in .env
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+sqlite: &sqlite
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+<% if ENV.fetch("DB_ADAPTER", "postgresql") == "sqlite3" %>
+  <<: *sqlite
+  database: storage/development.sqlite3
+<% else %>
+  <<: *default
+  database: project_hr_development
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+  username: <%= ENV.fetch("DATABASE_USER", "") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "") %>
+<% end %>
+
+test:
+<% if ENV.fetch("DB_ADAPTER", "postgresql") == "sqlite3" %>
+  <<: *sqlite
+  database: storage/test.sqlite3
+<% else %>
+  <<: *default
+  database: project_hr_test
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+  username: <%= ENV.fetch("DATABASE_USER", "") %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD", "") %>
+<% end %>
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: project_hr_production
+    username: project_hr
+    password: <%= ENV["PROJECT_HR_DATABASE_PASSWORD"] %>
+  cache:
+    <<: *primary_production
+    database: project_hr_production_cache
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    database: project_hr_production_queue
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    database: project_hr_production_cable
+    migrations_paths: db/cable_migrate

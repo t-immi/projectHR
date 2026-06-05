@@ -1,0 +1,38 @@
+{
+  "found": 3,
+  "items": [
+    {
+      "id": "hh-resume-001",
+      "title": "Ruby on Rails разработчик — {{query}}",
+      "snippet": {
+        "requirement": "Опыт разработки на Ruby on Rails от 2 лет. Знание PostgreSQL, REST API, {{query}}.",
+        "responsibility": "Разработка backend-сервисов, интеграция с внешними API."
+      },
+      "professional_roles": [
+        { "name": "Программист, разработчик" }
+      ]
+    },
+    {
+      "id": "hh-resume-002",
+      "title": "Backend-разработчик Python — {{query}}",
+      "snippet": {
+        "requirement": "Python, FastAPI, SQL, опыт интеграции ML-моделей. Интерес к {{query}}.",
+        "responsibility": "Проектирование API и сервисов обработки данных."
+      },
+      "professional_roles": [
+        { "name": "Программист, разработчик" }
+      ]
+    },
+    {
+      "id": "hh-resume-003",
+      "title": "Fullstack-разработчик — {{query}}",
+      "snippet": {
+        "requirement": "Ruby, JavaScript, PostgreSQL, Docker. Опыт в {{query}}.",
+        "responsibility": "Разработка web-приложений end-to-end."
+      },
+      "professional_roles": [
+        { "name": "Программист, разработчик" }
+      ]
+    }
+  ]
+}

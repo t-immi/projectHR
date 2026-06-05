@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title><%= content_for(:title) || t("app.name") %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+      <div class="container">
+        <%= link_to t("app.name"), root_path, class: "navbar-brand fw-bold" %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><%= link_to t("nav.dashboard"), root_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to t("nav.resumes"), resumes_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to t("nav.vacancies"), vacancies_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to t("nav.match_scores"), match_scores_path, class: "nav-link" %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container pb-5">
+      <% flash.each do |type, message| %>
+        <div class="alert alert-<%= type == "notice" ? "success" : "danger" %> alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
+  </body>
+</html>
